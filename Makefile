@@ -20,6 +20,8 @@ GIT_DIRTY   = $(shell test -n "`git status --porcelain`" && echo "dirty" || echo
 GO_EXE      = go
 OSNAME      = $(shell uname -o)
 ARCHNAME    = $(shell uname -m)
+GO_VERSION  = $(shell awk '/^go /{print $$2}' go.mod|head -n1)
+BUILDER_IMAGE = golang:$(GO_VERSION)-alpine
 
 ifeq ($(OSNAME),Darwin)
   OS = mac
